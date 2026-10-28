@@ -1,0 +1,53 @@
+{
+  "app": "b1dz",
+  "scope": "user_settings",
+  "userId": "usr_compat_fixture",
+  "passphrase": "correct horse battery staple",
+  "recoveryKey": "45MZ-S1D7-VPXT-465Y-92J3-BBKS-KGMT-WMGF-MFB2-19P2-5YAM-K1FF-JX6A",
+  "seal": {
+    "v": 2,
+    "kdf": {
+      "alg": "PBKDF2-SHA256",
+      "iterations": 600000,
+      "salt": "Tbv3+sv80CQYI6FfkT2Pbw=="
+    },
+    "wrapped_dek": {
+      "ciphertext": "51PNMArmCwQcXX1tSAX1zfwXBWoYNjBuXNHN7vzXbmQ=",
+      "iv": "9Q3EpKX318LjYJUJ",
+      "tag": "NA4dgmPrcjH5CBSTfHNQNg=="
+    },
+    "recovery_wrapped_dek": {
+      "ciphertext": "2Gq9a3DN8k+QlgwM5lwuCFBpDBjyAxG3n5IztXRNaog=",
+      "iv": "lqg/okZomCkBaJfZ",
+      "tag": "6h55PdPoVnTPqqYTAQTD1Q=="
+    },
+    "key_check": {
+      "ciphertext": "7EEobs0ZftsBx1WIwAMu7JPExw==",
+      "iv": "Tu4qJ1jj+TjzUgwG",
+      "tag": "Kd8mWQxuQKjxHEmLeGWHUA=="
+    },
+    "inbox_public_key": "BIVtGJJosWwHmGisFTJa2n70E1t6hxrdDYQB1WqdqMMl5RjwXtDRMSAZ+M7S6yZQh4Ns0cE6yGRttmPpLrHoEqk=",
+    "inbox_private_sealed": {
+      "ciphertext": "wgF4Js64sWbbJ5jqOJkFRyxLHcPteJbGPA4WP3Ui9C6rl5Q0YH7ZegHhFBwTssoSDxikihdE3qMt4KqGbY1lTQp3DKXIFjF3Ir3hVHJ/uYklK8Gz3YHS+T5VgmWJ6Hjzx5c1YNzLJUFZ/3rR/tXPo2FcmTYp1bLjbaMqFHFAV+3XgLQdGz5uQNb/",
+      "iv": "8Ctdigm2AXAqbdb0",
+      "tag": "+ejyhZdwhpcTK5kum98a8A=="
+    }
+  },
+  "payload_secret": {
+    "ciphertext": "4X4koQxJbRJ8Ez1eoudEj3gEASTZHsSIUkDM6QeCm/2BdIu8WXDI/+3/E+QyNA==",
+    "iv": "dwWYSxErVn5mrGWs",
+    "tag": "yD9mvu0gEeOn0gKz2+WaGg=="
+  },
+  "inbox": [
+    {
+      "id": "TCTY9eb4N93j",
+      "epk": "BOYYvPxFmHKwIcsyhnJYWmd9NVLqhq0aLmJcSjD6BVJC4IgLmH7SNuy+huW4/A6bP6Yx0KkzjHJHpDpajbwKyr8=",
+      "blob": {
+        "ciphertext": "wjzOCrm3PF6cwmkLRr2EBhBBPYTCfmrhJw==",
+        "iv": "HIypj9Mr0Tb+kDDs",
+        "tag": "2ARmkvI9tleHh6xbWvN6Zw=="
+      },
+      "created_at": "2026-10-28T19:59:59.899Z"
+    }
+  ]
+}
