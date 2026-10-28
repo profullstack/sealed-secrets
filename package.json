@@ -1,6 +1,6 @@
 {
   "name": "@profullstack/sealed-secrets",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Store the API keys, tokens and passwords your users give you so that only they can open them: sealed under a passphrase the user holds (PBKDF2 600k + HKDF + AES-256-GCM), a one-time recovery key, an inbox servers can seal OAuth tokens into but never read, and in-memory unlock sessions with a TTL for workers. WebCrypto only, zero dependencies.",
   "keywords": [
@@ -27,7 +27,8 @@
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "import": "./src/index.js"
+      "import": "./src/index.js",
+      "default": "./src/index.js"
     },
     "./package.json": "./package.json"
   },
