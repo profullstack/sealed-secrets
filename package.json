@@ -1,0 +1,52 @@
+{
+  "name": "@profullstack/sealed-secrets",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Store the API keys, tokens and passwords your users give you so that only they can open them: sealed under a passphrase the user holds (PBKDF2 600k + HKDF + AES-256-GCM), a one-time recovery key, an inbox servers can seal OAuth tokens into but never read, and in-memory unlock sessions with a TTL for workers. WebCrypto only, zero dependencies.",
+  "keywords": [
+    "secrets",
+    "encryption",
+    "byok",
+    "api-keys",
+    "webcrypto",
+    "aes-gcm",
+    "pbkdf2",
+    "zero-knowledge",
+    "vault"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/profullstack/sealed-secrets.git"
+  },
+  "homepage": "https://github.com/profullstack/sealed-secrets#readme",
+  "bugs": {
+    "url": "https://github.com/profullstack/sealed-secrets/issues"
+  },
+  "license": "MIT",
+  "author": "Profullstack, LLC",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./src/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./src/index.js",
+  "types": "./index.d.ts",
+  "files": [
+    "src",
+    "index.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "node --test && bun test"
+  }
+}
