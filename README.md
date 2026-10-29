@@ -85,6 +85,45 @@ const key = sessions.get(user.id); // null once locked or expired: pause that us
 The TTL defaults to 8 hours and caps at 7 days. A restart empties the store, so every user is
 locked again, and lock or expiry zeroes the key.
 
+## The key vault UI (0.2.0)
+
+The same "Key vault" card (create, unlock, lock, change passphrase, recovery key)
+for every site, so nobody writes it again. Three entries:
+
+- `@profullstack/sealed-secrets/vault-card`: `keyVaultCardHtml({ app, scope, userId, vault, intro, scriptSrc })`
+  draws the card as an HTML string (server side; in Hono JSX wrap it in `raw()`).
+- `@profullstack/sealed-secrets/vault-ui/auto`: bundle this as an **IIFE** and load
+  it on that page. It mounts every `[data-key-vault]`. `mountKeyVault(root)` and
+  `createVaultClient()` from `./vault-ui` if you want the pieces.
+- `@profullstack/sealed-secrets/vault-server`: `createVaultHandlers({ sealer, store, onUnlock, onLock, status })`
+  and `mountVaultRoutes(app, { handlers, userId })` for GET/POST/PUT `/my/vault`,
+  POST `/my/vault/unlock` and `/my/vault/lock`.
+
+```js
+// server
+import { createVaultHandlers, mountVaultRoutes } from '@profullstack/sealed-secrets/vault-server';
+const handlers = createVaultHandlers({
+  sealer,                                   // createSealer({ app, scope }), same as the page
+  store: { get: getSeal, create: insertSealIfNone, replace: updateSeal },
+  onUnlock: async (userId, dek, ttl) => unlockStore.unlock(userId, deriveKey(dek), ttl),
+  onLock: (userId) => unlockStore.lock(userId),
+  status: (userId) => unlockStore.status(userId),
+});
+mountVaultRoutes(app, { handlers, userId: (c) => requireUser(c).id });
+
+// build: bun build node_modules/@profullstack/sealed-secrets/src/vault-ui-auto.js --format=iife
+```
+
+What it does for the reader: the fields are a form (Enter and a TV remote's Go
+key submit), "Sealing... this takes a few seconds." shows before the key
+derivation starts, errors say what went wrong, and the recovery key is shown on
+the page with Copy until they press "I have saved it" (`window.prompt` is
+suppressed in installed apps). Only the derived data key ever leaves the page.
+
+Bundle it as an IIFE. Two unwrapped minified bundles on one page share the
+global scope and collide on short names ("Identifier 'P' has already been
+declared"), and whichever loads second never runs.
+
 ## What this is not for
 
 Your own operator secrets (your Resend key, your database URL) belong in the logicsrc team

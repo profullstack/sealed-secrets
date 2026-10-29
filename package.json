@@ -1,8 +1,8 @@
 {
   "name": "@profullstack/sealed-secrets",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "type": "module",
-  "description": "Store the API keys, tokens and passwords your users give you so that only they can open them: sealed under a passphrase the user holds (PBKDF2 600k + HKDF + AES-256-GCM), a one-time recovery key, an inbox servers can seal OAuth tokens into but never read, and in-memory unlock sessions with a TTL for workers. WebCrypto only, zero dependencies.",
+  "description": "Store the API keys, tokens and passwords your users give you so that only they can open them: sealed under a passphrase the user holds (PBKDF2 600k + HKDF + AES-256-GCM), a one-time recovery key, an inbox servers can seal OAuth tokens into but never read, and in-memory unlock sessions with a TTL for workers. Ships the key vault UI too: a browser controller, the card markup and framework-agnostic server routes. WebCrypto only, zero dependencies.",
   "keywords": [
     "secrets",
     "encryption",
@@ -12,7 +12,9 @@
     "aes-gcm",
     "pbkdf2",
     "zero-knowledge",
-    "vault"
+    "vault",
+    "key-vault",
+    "passphrase"
   ],
   "repository": {
     "type": "git",
@@ -30,6 +32,25 @@
       "import": "./src/index.js",
       "default": "./src/index.js"
     },
+    "./vault-ui": {
+      "types": "./vault.d.ts",
+      "import": "./src/vault-ui.js",
+      "default": "./src/vault-ui.js"
+    },
+    "./vault-ui/auto": {
+      "import": "./src/vault-ui-auto.js",
+      "default": "./src/vault-ui-auto.js"
+    },
+    "./vault-server": {
+      "types": "./vault.d.ts",
+      "import": "./src/vault-server.js",
+      "default": "./src/vault-server.js"
+    },
+    "./vault-card": {
+      "types": "./vault.d.ts",
+      "import": "./src/vault-card.js",
+      "default": "./src/vault-card.js"
+    },
     "./package.json": "./package.json"
   },
   "main": "./src/index.js",
@@ -37,13 +58,16 @@
   "files": [
     "src",
     "index.d.ts",
+    "vault.d.ts",
     "README.md",
     "LICENSE"
   ],
   "engines": {
     "node": ">=20"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "./src/vault-ui-auto.js"
+  ],
   "publishConfig": {
     "access": "public"
   },
